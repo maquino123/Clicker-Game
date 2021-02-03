@@ -5,9 +5,9 @@ var resources = {"gold":0,"pickaxe":1}
 var costs = {"pickaxe":15,
 	     "miner":200,
 	     "miner_pickaxe":15}
-var growthRate = {"pickaxe":1.25,
-		  "miner":1.25,
-	     "miner_pickaxe":1.75}
+var growthRate = {"pickaxe":1,
+		  "miner":1,
+	     "miner_pickaxe":2}
 
 var increments = [{"input":["miner","miner_pickaxe"],
 		   "output":"gold"}]
@@ -22,23 +22,23 @@ function mineGold(num){
 };
 
 function upgradeMinerPickaxe(num){
-    if (resources["gold"] >= costs["miner_pickaxe"]*num){
-	resources["miner_pickaxe"] += num
-	resources["gold"] -= num*costs["miner_pickaxe"]
-	
-	costs["miner_pickaxe"] *= growthRate["miner_pickaxe"]
-	
+    if (resources["gold"] >= costs["miner_pickaxe"]*num){ //Check if you have enough mangoes to buy farming equipment upgrade
+	resources["miner_pickaxe"] += num //Increment farming equipment level
+	resources["gold"] -= num*costs["miner_pickaxe"] //Subtract cost of upgrade from total mangoes
+
+	costs["miner_pickaxe"] *= growthRate["miner_pickaxe"] //
+
 	updateText()
     }
 };
 
 function upgradePickaxe(num){
-    if (resources["gold"] >= costs["pickaxe"]*num){
+    if (resources["mangoes"] >= costs["pickaxe"]*num){
 	resources["pickaxe"] += num
 	resources["gold"] -= num*costs["pickaxe"]
-	
+
 	costs["pickaxe"] *= growthRate["pickaxe"]
-	
+
 	updateText()
     }
 };
@@ -52,12 +52,12 @@ function hireMiner(num){
 	}
 	resources["miner"] += num
 	resources["gold"] -= num*costs["miner"]
-	
+
 	costs["miner"] *= growthRate["miner"]
-	
+
 	updateText()
 
-	
+
     }
 };
 
@@ -70,12 +70,12 @@ function updateText(){
 	    unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
 	}
 	if (unlocked){
-	    for (var element of document.getElementsByClassName("show_"+key)){		
+	    for (var element of document.getElementsByClassName("show_"+key)){
 		element.style.display = "block"
 	    }
 	}
     }
-    
+
     for (var key in resources){
 	 for (var element of document.getElementsByClassName(key)){
 	    element.innerHTML = resources[key].toFixed(2)
@@ -92,23 +92,23 @@ function updateText(){
 window.setInterval(function(){
     timer += tickRate
 
-    
+
     for (var increment of increments){
 	total = 1
 	for (var input of increment["input"]){
 	    total *= resources[input]
-	    
+
 	}
 	if (total){
 	    console.log(total)
 	    resources[increment["output"]] += total/tickRate
 	}
     }
-    
+
     if (timer > visualRate){
 	timer -= visualRate
 	updateText()
     }
-  
+
 
 }, tickRate);
