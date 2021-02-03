@@ -1,23 +1,69 @@
-button {
-    background-color: #FFFFFF; 
-    border: none;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;    
-}
-
-button:hover {
-    background-color: #e7e7e7; 
-}
-
-button:active {
-    background-color: #ececec; 
-}
-
-.column {
+.sectionLeft {
   float: left;
+  width: 80%;
+}
+
+.sectionRight {
+  float: right;
+  width: 20%;
+}
+
+.scorecontainer{
+  background-color: rgb(255, 195, 36);
   width: 50%;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.imagecontainer img{
+  position: relative;
+  transition: all .1s ease-in-out;
+}
+
+.imagecontainer img:hover {
+  transform: scale(1.10);
+}
+
+.imagecontainer img:active {
+  transform: scale(0.99);
+}
+
+.store {
+  background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
+  width: 100%;
+  margin: 5px 0px 5px 0px;
+}
+
+.store:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
+.store #image {
+  width: 25%;
+}
+
+.store img {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+}
+
+.store #nameandcost p {
+  margin: 0px;
+  width: 100%;
+}
+
+.store #nameandcost p:first-of-type {
+  font-size: 15px;
+}
+
+.store #amount {
+  font-size: 25px;
+  font-family: roboto;
+  width: 15%;
 }
