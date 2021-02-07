@@ -1,114 +1,89 @@
-var timer = 256
-var tickRate = 16
-var visualRate = 256
-var resources = {"gold":0,"pickaxe":1}
-var costs = {"pickaxe":15,
-	     "miner":200,
-	     "miner_pickaxe":15}
-var growthRate = {"pickaxe":1,
-		  "miner":1,
-	     "miner_pickaxe":2}
+var game = {
+	mangoes: 0,
+	totalMangoes: 0,
+	totalClicks: 0,
+	clickValue: 1,
+	version: 0.000,
 
-var increments = [{"input":["miner","miner_pickaxe"],
-		   "output":"gold"}]
+	gatherMangoes: function(amount) {
+			this.mangoes += amount; //this = whatever variable in var game
+			this.totalMangoes += amount;
+			display.updateScore();
+	},
 
-var unlocks = {"pickaxe":{"gold":10},
-	       "miner":{"gold":100},
-	       "miner_pickaxe":{"miner":1}}
-
-function mineGold(num){
-    resources["gold"] += num*resources["pickaxe"]
-    updateText()
+	getScorePerSecond: function() {
+		var scorePerSecond = 0;
+		for (i = 0; i < items.name.length; i++) { //Go through every index in items.name
+				scorePerSecond += items.income[i] * items.count[i];
+		}
+		return scorePerSecond;
+	}
 };
 
-function upgradeMinerPickaxe(num){
-    if (resources["gold"] >= costs["miner_pickaxe"]*num){ //Check if you have enough mangoes to buy farming equipment upgrade
-	resources["miner_pickaxe"] += num //Increment farming equipment level
-	resources["gold"] -= num*costs["miner_pickaxe"] //Subtract cost of upgrade from total mangoes
+var items = {
+	name: [
+			"Equipment",
+			"Farmer",
+			"Sprinkler"
+		],
 
-	costs["miner_pickaxe"] *= growthRate["miner_pickaxe"] //
+	image: [
+			"equipment.png",
+			"farmer.png",
+			"sprinkler.png"
+		],
 
-	updateText()
-    }
-};
+	count: [
+			0,
+			0,
+			0
+		],
 
-function upgradePickaxe(num){
-    if (resources["mangoes"] >= costs["pickaxe"]*num){
-	resources["pickaxe"] += num
-	resources["gold"] -= num*costs["pickaxe"]
+	income: [
+			1,
+			5,
+		 10
+		],
 
-	costs["pickaxe"] *= growthRate["pickaxe"]
+	cost: [
+			15,
+			50,
+			100
+		],
 
-	updateText()
-    }
-};
-function hireMiner(num){
-    if (resources["gold"] >= costs["miner"]*num){
-	if (!resources["miner"]){
-	    resources["miner"] = 0
-	}
-	if (!resources["miner_pickaxe"]){
-	    resources["miner_pickaxe"] = 1
-	}
-	resources["miner"] += num
-	resources["gold"] -= num*costs["miner"]
-
-	costs["miner"] *= growthRate["miner"]
-
-	updateText()
-
-
-    }
-};
-
-
-
-function updateText(){
-    for (var key in unlocks){
-	var unlocked = true
-	for (var criterion in unlocks[key]){
-	    unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
-	}
-	if (unlocked){
-	    for (var element of document.getElementsByClassName("show_"+key)){
-		element.style.display = "block"
-	    }
-	}
-    }
-
-    for (var key in resources){
-	 for (var element of document.getElementsByClassName(key)){
-	    element.innerHTML = resources[key].toFixed(2)
-	}
-    }
-    for (var key in costs){
-	for (var element of document.getElementsByClassName(key+"_cost")){
-	    element.innerHTML = costs[key].toFixed(2)
-	}
-    }
+		purchase: function(index) {
+			if (game.mangoes >= this.cost[index]) { //Check if wh
+				game.mangoes -= this.cost[index];
+				this.count[index] += 1;
+				this.cost[index] = Math.round(this.cost[index] * 1.15);
+				display.updateScore();
+				display.updateStore();
+			}
+		}
 };
 
 
-window.setInterval(function(){
-    timer += tickRate
+var display = {
+	updateScore: function() {
+		document.getElementById("mangoes").innerHTML = game.mangoes;
+		document.getElementById("scorepersecond").innerHTML = game.getScorePerSecond();
+	},
 
-
-    for (var increment of increments){
-	total = 1
-	for (var input of increment["input"]){
-	    total *= resources[input]
-
+	updateStore: function() {
+		document.getElementById("storeContainer").innerHTML = "";
+		for (i = 0; i < items.name.length; i++){
+			document.getElementById("storeContainer").innerHTML += '<table class="store" onClick="items.purchase('+i+')"><tr><td id="image"><img src='+items.image[i]+'></td> <td id="nameandcost"><p>'+items.name[i]+'</p><p><span>'+items.cost[i]+'</span> Mangoes</p></td><td id="amount"><span>'+items.count[i]+'</span></td></tr></table>';
+		}
 	}
-	if (total){
-	    console.log(total)
-	    resources[increment["output"]] += total/tickRate
-	}
-    }
+};
 
-    if (timer > visualRate){
-	timer -= visualRate
-	updateText()
-    }
+window.onload = function() {
+	display.updateScore();
+	display.updateStore();
+};
 
-
-}, tickRate);
+setInterval(function() {
+	game.mangoes += game.getScorePerSecond();
+	game.totalMangoes += game.getScorePerSecond();
+	display.updateScore();
+}, 1000);
