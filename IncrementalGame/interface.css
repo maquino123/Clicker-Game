@@ -8,6 +8,11 @@
   width: 20%;
 }
 
+.sectionBottom{
+  float: left;
+
+}
+
 .scorecontainer{
   background-color: rgb(255, 195, 36);
   width: 50%;

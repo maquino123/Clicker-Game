@@ -2,7 +2,7 @@ var game = {
 	mangoes: 0,
 	totalMangoes: 0,
 	gold: 0,
-	goldCost: 100,
+	goldCost: 50,
 	totalGold: 0,
 	totalClicks: 0,
 	clickValue: 1,
@@ -12,7 +12,7 @@ var game = {
 			this.mangoes += amount; //this = whatever variable in var game
 			this.totalMangoes += amount;
 			display.updateScore();
-			if (game.mangoes >= 50){ //Display trade button once user reaches a certain amount of mangoes
+			if (game.mangoes >= 50){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
 				document.getElementById("tradeButton").style.display = 'inline-block';
 		 }
 	},
@@ -32,8 +32,11 @@ var game = {
 			game.gold += 1;
 			game.goldCost = Math.round(game.goldCost * 1.15);
 			document.getElementById("gold").style.display = 'inline-block';
-			document.getElementById("gold").innerHTML = "Gold:" + game.gold;
+			document.getElementById("gold").innerHTML = "Gold: " + game.gold;
 			document.getElementById("goldCost").innerHTML = game.goldCost;
+		}
+		if (game.gold >= items2.cost[0]){
+			document.getElementById("mangoStand").style.display = 'inline-block';
 		}
 	}
 };
@@ -80,6 +83,50 @@ var items = {
 			}
 		}
 };
+
+var items2 = {
+	name:[
+		"Stand",
+		"Factory",
+		"Government",
+		"Country"
+	],
+
+	image: [
+
+	],
+
+	count: [
+		0,
+		0,
+		0,
+		0
+	],
+
+	income: [
+		2,
+		5,
+		15,
+		50
+	],
+
+	cost:[
+		5,
+		5,
+		5,
+		50
+	],
+
+	purchaseStand: function(){
+		if (game.gold >= this.cost[0]){
+			game.gold -= this.cost[0];
+			this.count(0) += 1;
+			this.cost(0) = Math.round(this.cost[0] * 1.15);
+		}
+	}
+}
+
+
 
 var display = {
 	updateScore: function() {
