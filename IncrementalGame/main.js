@@ -2,7 +2,7 @@ var game = {
 	mangoes: 0,
 	totalMangoes: 0,
 	gold: 0,
-	goldCost: 50,
+	goldCost: 1,
 	totalGold: 0,
 	totalClicks: 0,
 	clickValue: 1,
@@ -30,7 +30,7 @@ var game = {
 		if (game.mangoes >= game.goldCost){
 			game.mangoes -= game.goldCost;
 			game.gold += 1;
-			game.goldCost = Math.round(game.goldCost * 1.15);
+			game.goldCost = Math.round(game.goldCost * 1.5);
 			document.getElementById("gold").style.display = 'inline-block';
 			document.getElementById("gold").innerHTML = "Gold: " + game.gold;
 			document.getElementById("goldCost").innerHTML = game.goldCost;
@@ -111,21 +111,37 @@ var items2 = {
 	],
 
 	cost:[
-		5,
-		5,
-		5,
-		50
+		1,
+		2,
+		3,
+		4
 	],
 
 	purchaseStand: function(){
 		if (game.gold >= this.cost[0]){
 			game.gold -= this.cost[0];
 			this.count[0] += 1;
-			this.cost[0] = Math.round(this.cost[0] * 1.15);
-			document.getElementById("gold").innerHTML = "Gold:" + game.gold;
+			this.cost[0] = Math.round(this.cost[0] * 1.5);
+			document.getElementById("gold").innerHTML = "Gold: " + game.gold;
 			document.getElementById("standCost").innerHTML = this.cost[0];
 			document.getElementById("mangoStandCount").style.display = 'inline-block';
-			document.getElementById("mangoStandCount").innerHTML = "Mango Stands: " + items2.count[0];
+			document.getElementById("mangoStandCount").innerHTML = "Mango Stands: " + this.count[0];
+		}
+
+		if (this.count[0] >= this.cost[1]){
+			document.getElementById("mangoFactory").style.display = 'inline-block';
+		}
+	},
+
+	purchaseFactory: function(){
+		if (this.count[0] >= this.cost[1]){ //If the user has enough mango stands to purchase a factory (2 mango stands for 1 factory)
+			this.count[0] -= this.cost[1];
+			this.count[1] += 1;
+			this.cost[1] = Math.round(this.cost[1] * 1.3);
+			document.getElementById("mangoStandCount").innerHTML = "Mango Stands: " + this.count[0];
+			document.getElementById("factoryCost").innerHTML = this.cost[1];
+			document.getElementById("factoryCount").style.display = 'inline-block';
+			document.getElementById("factoryCount").innerHTML = "Mango Factories: " + this.count[1];
 		}
 	}
 };
