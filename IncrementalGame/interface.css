@@ -72,3 +72,9 @@
   font-family: roboto;
   width: 15%;
 }
+
+body{
+  background-image: url('bkg.jpg');
+  background-repeat: no-repeat;
+  background-size: 1920px 1080px;
+}

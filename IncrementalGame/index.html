@@ -7,7 +7,6 @@
 </head>
 
 <body>
-
   <div class="sectionLeft">
     <center>
       <p>Welcome to Mango Clicker!</p>
@@ -21,7 +20,9 @@
         <img src="mango.png" height="256px" width="256px" onclick="game.gatherMangoes(game.clickValue)">
       </div>
     </center>
-
+    <p id = "trademsg" style = "display:none">
+      Hello comrade you got a lot of mangoes there. What say you trade them for some gold?
+    </p>
     <div class="goldcontainer">
       <button id="tradeButton" type="button" onclick="game.tradeForGold()" style="display:none">Trade Mangoes for Gold: <span id="goldCost">1</span></button>
       <br><span id="gold" style="display:none">0</span>
@@ -34,10 +35,15 @@
       <br><button id="mangoFactory" type="button" style="display:none" onclick="items2.purchaseFactory()">Open a Mango Factory: <span id="factoryCost">2</span> Mango Stands</button><br>
       <span id="factoryCount" style="display:none">0</span>
 
-      <!--
-      <button id="mangoGov" type="button">Start a Mango Government: <span id="govCost">5</span> Factories</button><br>
-      <button id="mangoCountry" type="button">Start a Mango Country: <span id="countryCost">50</span> Government Buildings</button><br>
-    -->
+      <br><button id="mangoCorporation" type="button" style="display:none" onclick="items2.purchaseCorporation()">Open a Mango Corporation: <span id="corpCostyCost">3</span> Mango Factories</button><br>
+      <span id="corpCount" style="display:none">0</span>
+
+      <br><button id="mangoCity" type="button" style="display:none" onclick="items2.purchaseCity()">Open a Mango City: <span id="cityCostyCost">4</span> Mango Corporations</button><br>
+      <span id="citiesCount" style="display:none">0</span>
+
+      <br><button id="mangoCountry" type="button" style="display:none" onclick="items2.purchaseCountry()">Open the Philippines: <span id="countryCostyCost">5</span> Mango Cities</button><br>
+      <!-- <span id="countryCount" style="display:none">0</span> -->
+
     </div>
 
   </div>

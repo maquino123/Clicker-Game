@@ -12,9 +12,11 @@ var game = {
 			this.mangoes += amount; //this = whatever variable in var game
 			this.totalMangoes += amount;
 			display.updateScore();
-			if (game.mangoes >= 50){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
+			if (game.mangoes >= 100){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
 				document.getElementById("tradeButton").style.display = 'inline-block';
+				document.getElementById("trademsg").style.display = 'inline-block';
 		 }
+		 display.updateScore();
 	},
 
 	getScorePerSecond: function() {
@@ -30,7 +32,7 @@ var game = {
 		if (game.mangoes >= game.goldCost){
 			game.mangoes -= game.goldCost;
 			game.gold += 1;
-			game.goldCost = Math.round(game.goldCost * 1.5);
+			game.goldCost = Math.round(game.goldCost * 1.01);
 			document.getElementById("gold").style.display = 'inline-block';
 			document.getElementById("gold").innerHTML = "Gold: " + game.gold;
 			document.getElementById("goldCost").innerHTML = game.goldCost;
@@ -47,15 +49,18 @@ var items = {
 			"Equipment",
 			"Farmer",
 			"Sprinkler",
+			"Work Animals"
 		],
 
 	image: [
 			"equipment.png",
 			"farmer.png",
-			"sprinkler.png"
+			"sprinkler.png",
+			"farmanimals.png"
 		],
 
 	count: [
+			0,
 			0,
 			0,
 			0
@@ -64,13 +69,15 @@ var items = {
 	income: [
 			1,
 			5,
-		 10
+		 10,
+		 12
 		],
 
 	cost: [
 			15,
 			50,
-			100
+			100,
+			500
 		],
 
 		purchase: function(index) {
@@ -88,7 +95,8 @@ var items2 = {
 	name:[
 		"Stand",
 		"Factory",
-		"Government",
+		"Corporation",
+		"City",
 		"Country"
 	],
 
@@ -100,28 +108,23 @@ var items2 = {
 		0,
 		0,
 		0,
+		0,
 		0
-	],
-
-	income: [
-		2,
-		5,
-		15,
-		50
 	],
 
 	cost:[
 		1,
 		2,
 		3,
-		4
+		4,
+		5 //one country = 5 cities, one city = 4 corporations, one corporation = 3 factories, one factory = 2 stands, one stand = 1 gold
 	],
 
 	purchaseStand: function(){
 		if (game.gold >= this.cost[0]){
 			game.gold -= this.cost[0];
 			this.count[0] += 1;
-			this.cost[0] = Math.round(this.cost[0] * 1.5);
+			this.cost[0] = Math.round(this.cost[0] * 1.01);
 			document.getElementById("gold").innerHTML = "Gold: " + game.gold;
 			document.getElementById("standCost").innerHTML = this.cost[0];
 			document.getElementById("mangoStandCount").style.display = 'inline-block';
@@ -137,15 +140,64 @@ var items2 = {
 		if (this.count[0] >= this.cost[1]){ //If the user has enough mango stands to purchase a factory (2 mango stands for 1 factory)
 			this.count[0] -= this.cost[1];
 			this.count[1] += 1;
-			this.cost[1] = Math.round(this.cost[1] * 1.3);
+			this.cost[1] = Math.round(this.cost[1] * 1.01);
 			document.getElementById("mangoStandCount").innerHTML = "Mango Stands: " + this.count[0];
 			document.getElementById("factoryCost").innerHTML = this.cost[1];
 			document.getElementById("factoryCount").style.display = 'inline-block';
 			document.getElementById("factoryCount").innerHTML = "Mango Factories: " + this.count[1];
 		}
-	}
-};
+		if (this.count[1] >= this.cost[2]){
+			document.getElementById("mangoCorporation").style.display = 'inline-block';
+		}
+	},
 
+	purchaseCorporation: function(){
+		if (this.count[1] >= this.cost[2]){ //If the user has enough factories: can buy corp (needs 3 factories to buy 1 corp, at the start)
+			this.count[1] -= this.cost[2];
+			this.count[2] += 1;
+			this.cost[2] = Math.round(this.cost[2] * 1.02);
+			document.getElementById("factoryCount").innerHTML = "Mango Factories: " + this.count[1];
+			document.getElementById("corpCostyCost").innerHTML = this.cost[2];
+			document.getElementById("corpCount").style.display = 'inline-block';
+			document.getElementById("corpCount").innerHTML = "Mango Corporations: " + this.count[2];
+		}
+		if (this.count[2] >= this.cost[3]){
+			document.getElementById("mangoCity").style.display = 'inline-block';
+		}
+	},
+
+	purchaseCity: function(){
+		if (this.count[2] >= this.cost[3]){ //If the user has enough corporations:
+			this.count[2] -= this.cost[3];
+			this.count[3] += 1;
+			this.cost[3] = Math.round(this.cost[3] * 1.01);
+			document.getElementById("corpCount").innerHTML = "Mango Corporations: " + this.count[2];
+			document.getElementById("cityCostyCost").innerHTML = this.cost[3];
+			document.getElementById("citiesCount").style.display = 'inline-block';
+			document.getElementById("citiesCount").innerHTML = "Mango Cities: " + this.count[3];
+		}
+		if (this.count[3] >= this.cost[4]){
+			document.getElementById("mangoCountry").style.display = 'inline-block';
+		}
+	},
+
+	purchaseCountry: function(){
+		if (this.count[3] >= this.cost[4]){ //If the user has enough Cities: country
+			this.count[3] -= this.cost[4];
+			this.count[4] += 1;
+			this.cost[4] = Math.round(this.cost[4] * 1.01);
+			document.getElementById("citiesCount").innerHTML = "Mango Cities: " + this.count[3];
+			document.getElementById("countryCostyCost").innerHTML = this.cost[4];
+			document.getElementById("countryCount").style.display = 'inline-block';
+			document.getElementById("countryCount").innerHTML = "Countries (how many of the philippines do u own): " + this.count[4];
+		}
+		/*
+		if (this.count[4] >= this.cost[5]){
+			document.getElementById("mangoFactory").style.display = 'inline-block';
+		}
+		*/
+	}
+	}
 
 
 var display = {
@@ -157,7 +209,7 @@ var display = {
 	updateStore: function() {
 		document.getElementById("storeContainer").innerHTML = "";
 		for (i = 0; i < items.name.length; i++){
-			document.getElementById("storeContainer").innerHTML += '<table class="store" onClick="items.purchase('+i+')"><tr><td id="image"><img src='+items.image[i]+'></td> <td id="nameandcost"><p>'+items.name[i]+'</p><p><span>'+items.cost[i]+'</span> Mangoes</p></td><td id="amount"><span>'+items.count[i]+'</span></td></tr></table>';
+			document.getElementById("storeContainer").innerHTML += '<table class="store" onClick="items.purchase('+i+')"><tr>						<td id="image"><img src='+items.image[i]+'></td> 			<td id="nameandcost"><p>'+items.name[i]+'</p><p> Cost: <span>'+items.cost[i]+'</span> Mangoes</p></td>	<td id="prodimprovement"><span>'+items.income[i]+'</span>/sec</td>		<td id="amount"><span>'+items.count[i]+'</span></td>					</tr></table>';
 		}
 	},
 }
