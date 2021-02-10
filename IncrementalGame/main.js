@@ -35,10 +35,10 @@ var game = {
 			document.getElementById("gold").innerHTML = "Gold: " + game.gold;
 			document.getElementById("goldCost").innerHTML = game.goldCost;
 		}
-		if (game.gold >= items2.cost[0]){
+		if (game.gold >= items2.cost[0]){ //Have mango stand button pop up when the user reaches 5 gold
 			document.getElementById("mangoStand").style.display = 'inline-block';
 		}
-	}
+	},
 };
 
 //Literally just have to add to this list to add more resources
@@ -120,11 +120,15 @@ var items2 = {
 	purchaseStand: function(){
 		if (game.gold >= this.cost[0]){
 			game.gold -= this.cost[0];
-			this.count(0) += 1;
-			this.cost(0) = Math.round(this.cost[0] * 1.15);
+			this.count[0] += 1;
+			this.cost[0] = Math.round(this.cost[0] * 1.15);
+			document.getElementById("gold").innerHTML = "Gold:" + game.gold;
+			document.getElementById("standCost").innerHTML = this.cost[0];
+			document.getElementById("mangoStandCount").style.display = 'inline-block';
+			document.getElementById("mangoStandCount").innerHTML = "Mango Stands: " + items2.count[0];
 		}
 	}
-}
+};
 
 
 
