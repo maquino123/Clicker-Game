@@ -10,7 +10,49 @@
 
 .sectionBottom{
   float: left;
+}
 
+#tradeButton {
+  background-color: rgb(255, 195, 36);
+  padding: 10px;
+  font-size: 14px;
+  font-family: roboto;
+}
+
+#mangoStand {
+  background-color: rgb(255, 195, 36);
+  padding: 10px;
+  font-size: 14px;
+  font-family: roboto;
+}
+
+#mangoFactory {
+  background-color: rgb(255, 195, 36);
+  padding: 10px;
+  font-size: 14px;
+  font-family: roboto;
+}
+
+#mangoCorporation {
+  background-color: rgb(255, 195, 36);
+  padding: 10px;
+  font-size: 14px;
+  font-family: roboto;
+}
+
+#mangoCity {
+  background-color: rgb(255, 195, 36);
+  padding: 10px;
+  font-size: 14px;
+  font-family: roboto;
+}
+
+
+#mangoCountry {
+  background-color: rgb(255, 195, 36);
+  padding: 10px;
+  font-size: 14px;
+  font-family: roboto;
 }
 
 .scorecontainer{
