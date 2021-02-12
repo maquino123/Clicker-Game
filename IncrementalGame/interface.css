@@ -55,15 +55,13 @@
   font-family: roboto;
 }
 
-<<<<<<< Updated upstream
-=======
 #winmsg {
   background-color: rgb(255, 195, 36);
   padding: 10px;
   font-size: 14px;
   font-family: roboto;
 }
->>>>>>> Stashed changes
+
 .scorecontainer{
   background-color: rgb(255, 195, 36);
   width: 50%;
@@ -129,12 +127,9 @@ body{
   background-repeat: no-repeat;
   background-size: 1920px 1080px;
 }
-<<<<<<< Updated upstream
-=======
 
 #title{
   font-size: 30px;
   font-family: sans-serif;
   font-kerning: normal;
 }
->>>>>>> Stashed changes

@@ -12,16 +12,14 @@ var game = {
 			this.mangoes += amount; //this = whatever variable in var game
 			this.totalMangoes += amount;
 			display.updateScore();
-<<<<<<< Updated upstream
 			if (game.mangoes >= 100){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
-=======
 			if (game.mangoes >= 10){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
->>>>>>> Stashed changes
 				document.getElementById("tradeButton").style.display = 'inline-block';
 				document.getElementById("trademsg").style.display = 'inline-block';
 		 }
 		 display.updateScore();
-	},
+	}
+},
 
 	getScorePerSecond: function() {
 		var scorePerSecond = 0;
@@ -38,11 +36,8 @@ var game = {
 			game.gold += 1;
 			game.goldCost = Math.round(game.goldCost * 1.01);
 			document.getElementById("gold").style.display = 'inline-block';
-<<<<<<< Updated upstream
 			document.getElementById("gold").innerHTML = "Gold: " + game.gold;
-=======
 			document.getElementById("gold").innerHTML = "You have " + game.gold + " gold!";
->>>>>>> Stashed changes
 			document.getElementById("goldCost").innerHTML = game.goldCost;
 		}
 		if (game.gold >= items2.cost[0]){ //Have mango stand button pop up when the user reaches 5 gold
@@ -97,7 +92,6 @@ var items = {
 				display.updateStore();
 			}
 		}
-<<<<<<< Updated upstream
 };
 
 var items2 = {
@@ -226,9 +220,6 @@ var display = {
 window.onload = function() {
 	display.updateScore();
 	display.updateStore();
-};
-
-=======
 };
 
 var items2 = {
@@ -362,7 +353,6 @@ window.onload = function() {
 	display.updateStore();
 };
 
->>>>>>> Stashed changes
 setInterval(function() {
 	game.mangoes += game.getScorePerSecond();
 	game.totalMangoes += game.getScorePerSecond();
