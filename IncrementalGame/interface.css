@@ -14,45 +14,94 @@
 
 #tradeButton {
   background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
   padding: 10px;
-  font-size: 14px;
+  font-size: 15px;
+  border-color: transparent;
   font-family: roboto;
 }
 
+#tradeButton:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
+
 #mangoStand {
   background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
   padding: 10px;
-  font-size: 14px;
+  font-size: 15px;
+  border-color: transparent;
   font-family: roboto;
+}
+
+#mangoStand:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
 }
 
 #mangoFactory {
   background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
   padding: 10px;
-  font-size: 14px;
+  font-size: 15px;
+  border-color: transparent;
   font-family: roboto;
+}
+
+#mangoFactory:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
 }
 
 #mangoCorporation {
   background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
   padding: 10px;
-  font-size: 14px;
+  font-size: 15px;
+  border-color: transparent;
   font-family: roboto;
+}
+
+#mangoCorporation:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
 }
 
 #mangoCity {
   background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
   padding: 10px;
-  font-size: 14px;
+  font-size: 15px;
+  border-color: transparent;
   font-family: roboto;
+}
+
+#mangoCity:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
 }
 
 
 #mangoCountry {
   background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
   padding: 10px;
-  font-size: 14px;
+  font-size: 15px;
+  border-color: transparent;
   font-family: roboto;
+}
+
+#mangoCountry:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
 }
 
 #winmsg {
@@ -126,6 +175,10 @@ body{
   background-image: url('bkg.jpg');
   background-repeat: no-repeat;
   background-size: 1920px 1080px;
+}
+
+.button{
+  padding-top: 50px;
 }
 
 #title{
