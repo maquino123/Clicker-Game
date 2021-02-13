@@ -36,7 +36,7 @@ var game = {
 			game.gold += 1;
 			game.goldCost = Math.round(game.goldCost * 1.01);
 			document.getElementById("gold").style.display = 'inline-block';
-			document.getElementById("gold").innerHTML = "You have " + game.gold + " gold!";
+			document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
 			document.getElementById("goldCost").innerHTML = game.goldCost;
 		}
 		if (game.gold >= items2.cost[0]){ //Have mango stand button pop up when the user reaches 5 gold
@@ -251,7 +251,7 @@ var items2 = {
 			document.getElementById("gold").innerHTML = "You have " + game.gold + " gold!";
 			document.getElementById("standCost").innerHTML = this.cost[0];
 			document.getElementById("mangoStandCount").style.display = 'inline-block';
-			document.getElementById("mangoStandCount").innerHTML = "You've got " + this.count[0] + " stands! Why not build a factory?";
+			document.getElementById("mangoStandCount").innerHTML = "Now you have " + this.count[0] + " mango stands! Why not build a factory?";
 		}
 		if (this.count[0] >= this.cost[1]){
 			document.getElementById("mangoFactory").style.display = 'inline-block';
@@ -263,10 +263,10 @@ var items2 = {
 			this.count[0] -= this.cost[1];
 			this.count[1] += 1;
 			this.cost[1] = Math.round(this.cost[1] * 1.01);
-			document.getElementById("mangoStandCount").innerHTML = "You've got " + this.count[0] + " stands! Why not build a factory?";
+			document.getElementById("mangoStandCount").innerHTML = "Now you have " + this.count[0] + " mango stands! Why not build a factory?";
 			document.getElementById("factoryCost").innerHTML = this.cost[1];
 			document.getElementById("factoryCount").style.display = 'inline-block';
-			document.getElementById("factoryCount").innerHTML = "A lot of people are moving in to work in the factories! You've got a lotta money and power. You have " + this.count[1] + " factories! Wanna turn yourself into a corporation?";
+			document.getElementById("factoryCount").innerHTML = "Now you have " + this.count[1] + " factories! A lot of people are moving in to work in the factories! You've got a lot of money and power. Wanna turn your business into a corporation?";
 		}
 		if (this.count[1] >= this.cost[2]){
 			document.getElementById("mangoCorporation").style.display = 'inline-block';
@@ -278,10 +278,10 @@ var items2 = {
 			this.count[1] -= this.cost[2];
 			this.count[2] += 1;
 			this.cost[2] = Math.round(this.cost[2] * 1.02);
-			document.getElementById("factoryCount").innerHTML = "A lot of people are moving in to work in the factories! You've got a lotta money and power. You have " + this.count[1] + " factories! Wanna turn yourself into a corporation?";
+			document.getElementById("factoryCount").innerHTML = "Now you have " + this.count[1] + " factories! A lot of people are moving in to work in the factories! You've got a lot of money and power. Wanna turn your business into a corporation?";
 			document.getElementById("corpCostyCost").innerHTML = this.cost[2];
 			document.getElementById("corpCount").style.display = 'inline-block';
-			document.getElementById("corpCount").innerHTML = "You've got a lot of corporations! (" + this.count[2] +") Pay off some governments like a proper corporation and buy a city!";
+			document.getElementById("corpCount").innerHTML = "Now you have " + this.count[2] +" mango corporations! Pay off some governments like a proper corporation and buy a city!";
 		}
 		if (this.count[2] >= this.cost[3]){
 			document.getElementById("mangoCity").style.display = 'inline-block';
@@ -293,10 +293,10 @@ var items2 = {
 			this.count[2] -= this.cost[3];
 			this.count[3] += 1;
 			this.cost[3] = Math.round(this.cost[3] * 1.01);
-			document.getElementById("corpCount").innerHTML = "You've got a lot of corporations! (" + this.count[2] +") Pay off some governments like a proper corporation and buy a city!";
+			document.getElementById("corpCount").innerHTML = "Now you have " + this.count[2] +" mango corporations! Pay off some governments like a proper corporation and buy a city!";
 			document.getElementById("cityCostyCost").innerHTML = this.cost[3];
 			document.getElementById("citiesCount").style.display = 'inline-block';
-			document.getElementById("citiesCount").innerHTML = "You've got " + this.count[3] + " cities! You can open your own mango country :D";
+			document.getElementById("citiesCount").innerHTML = "Now you have " + this.count[3] + " mango cities! You can open your own mango country :D";
 		}
 		if (this.count[3] >= this.cost[4]){
 			document.getElementById("mangoCountry").style.display = 'inline-block';
@@ -308,7 +308,7 @@ var items2 = {
 			this.count[3] -= this.cost[4];
 			this.count[4] += 1;
 			this.cost[4] = Math.round(this.cost[4] * 1.01);
-			document.getElementById("citiesCount").innerHTML = "You've got " + this.count[3] + " cities! You can open your own mango country :D";
+			document.getElementById("citiesCount").innerHTML = "Now you have " + this.count[3] + " mango cities! You can open your own mango country :D";
 			document.getElementById("countryCostyCost").innerHTML = this.cost[4];
 			if(this.count[4] >= 3){ //Display win message if number of countries you purchase is >= 3
 				document.getElementById("winmsg").style.display = 'inline-block';
