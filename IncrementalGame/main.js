@@ -189,8 +189,6 @@ var items2 = {
 			this.cost[4] = Math.round(this.cost[4] * 1.01);
 			document.getElementById("citiesCount").innerHTML = "Mango Cities: " + this.count[3];
 			document.getElementById("countryCostyCost").innerHTML = this.cost[4];
-			document.getElementById("countryCount").style.display = 'inline-block';
-			document.getElementById("countryCount").innerHTML = "Countries (how many of the philippines do u own): " + this.count[4];
 		}
 		/*
 		if (this.count[4] >= this.cost[5]){
@@ -312,7 +310,7 @@ var items2 = {
 			this.cost[4] = Math.round(this.cost[4] * 1.01);
 			document.getElementById("citiesCount").innerHTML = "Mango Cities: " + this.count[3];
 			document.getElementById("countryCostyCost").innerHTML = this.cost[4];
-			if(this.count[4] >= 3){
+			if(this.count[4] >= 3){ //Display win message if number of countries you purchase is >= 3
 				document.getElementById("winmsg").style.display = 'inline-block';
 			}
 			/*
@@ -323,11 +321,9 @@ var items2 = {
 	},
 
 	winGame: function(){
-			document.getElementById("winmsg").onclick = function(){
 				location.href='endscreen.html';
-			};
-		}
-}
+			}
+};
 
 
 

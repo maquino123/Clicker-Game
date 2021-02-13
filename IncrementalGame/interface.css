@@ -17,9 +17,10 @@
   transition: all .2s ease-in-out;
   border-radius: 10px;
   padding: 10px;
-  font-size: 15px;
+  margin-top: 5px;
+  font-size: 25px;
   border-color: transparent;
-  font-family: roboto;
+  font-family: "Sweet Mango";
 }
 
 #tradeButton:hover {
@@ -33,9 +34,10 @@
   transition: all .2s ease-in-out;
   border-radius: 10px;
   padding: 10px;
-  font-size: 15px;
+  margin-top: 5px;
+  font-size: 25px;
   border-color: transparent;
-  font-family: roboto;
+  font-family: "Sweet Mango";
 }
 
 #mangoStand:hover {
@@ -48,9 +50,10 @@
   transition: all .2s ease-in-out;
   border-radius: 10px;
   padding: 10px;
-  font-size: 15px;
+  font-size: 25px;
+  margin-top: 5px;
   border-color: transparent;
-  font-family: roboto;
+  font-family: "Sweet Mango";
 }
 
 #mangoFactory:hover {
@@ -63,9 +66,10 @@
   transition: all .2s ease-in-out;
   border-radius: 10px;
   padding: 10px;
-  font-size: 15px;
+  margin-top: 5px;
+  font-size: 25px;
   border-color: transparent;
-  font-family: roboto;
+  font-family: "Sweet Mango";
 }
 
 #mangoCorporation:hover {
@@ -78,9 +82,10 @@
   transition: all .2s ease-in-out;
   border-radius: 10px;
   padding: 10px;
-  font-size: 15px;
+  margin-top: 5px;
+  font-size: 25px;
   border-color: transparent;
-  font-family: roboto;
+  font-family: "Sweet Mango";
 }
 
 #mangoCity:hover {
@@ -94,9 +99,10 @@
   transition: all .2s ease-in-out;
   border-radius: 10px;
   padding: 10px;
-  font-size: 15px;
+  margin-top: 5px;
+  font-size: 25px;
   border-color: transparent;
-  font-family: roboto;
+  font-family: "Sweet Mango";
 }
 
 #mangoCountry:hover {
@@ -108,16 +114,16 @@
   background-color: rgb(255, 195, 36);
   padding: 10px;
   font-size: 14px;
-  font-family: roboto;
+  font-family: "Sweet Mango";
 }
 
 .scorecontainer{
   background-color: rgb(255, 195, 36);
-  width: 50%;
+  width: 40%;
   padding: 10px;
   border-radius: 10px;
   font-size: 24px;
-  font-weight: bold;
+  font-family: "Sweet Mango";
 }
 
 .imagecontainer img{
@@ -139,6 +145,7 @@
   border-radius: 10px;
   width: 100%;
   margin: 5px 0px 5px 0px;
+  font-family: "Sweet Mango";
 }
 
 .store:hover {
@@ -167,7 +174,7 @@
 
 .store #amount {
   font-size: 25px;
-  font-family: roboto;
+  font-family: "Sweet Mango";
   width: 15%;
 }
 
@@ -175,6 +182,7 @@ body{
   background-image: url('bkg.jpg');
   background-repeat: no-repeat;
   background-size: 1920px 1080px;
+  user-select: none;
 }
 
 .button{
@@ -183,6 +191,16 @@ body{
 
 #title{
   font-size: 30px;
-  font-family: sans-serif;
+  font-family: "Sweet Mango";
   font-kerning: normal;
+}
+
+p {
+  font-family: "Sweet Mango";
+}
+
+@font-face {
+    font-family: "Sweet Mango";
+    src: url('Sweet Mango.ttf'), url('Sweet Mango.otf');
+}
 }
