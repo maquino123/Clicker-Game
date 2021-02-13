@@ -1,6 +1,6 @@
-.sectionLeft {
+.sectionMid {
   float: left;
-  width: 80%;
+  width: 70%;
 }
 
 .sectionRight {
@@ -8,17 +8,18 @@
   width: 20%;
 }
 
-.sectionBottom{
+.sectionLeft{
   float: left;
+  width: 10%;
 }
 
 #tradeButton {
   background-color: rgb(255, 195, 36);
   transition: all .2s ease-in-out;
   border-radius: 10px;
-  padding: 10px;
+  padding: 5px 15px 5px 15px;
   margin-top: 5px;
-  font-size: 25px;
+  font-size: 18px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
@@ -35,7 +36,7 @@
   border-radius: 10px;
   padding: 10px;
   margin-top: 5px;
-  font-size: 25px;
+  font-size: 18px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
@@ -50,7 +51,7 @@
   transition: all .2s ease-in-out;
   border-radius: 10px;
   padding: 10px;
-  font-size: 25px;
+  font-size: 18px;
   margin-top: 5px;
   border-color: transparent;
   font-family: "Sweet Mango";
@@ -67,7 +68,7 @@
   border-radius: 10px;
   padding: 10px;
   margin-top: 5px;
-  font-size: 25px;
+  font-size: 18px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
@@ -83,7 +84,7 @@
   border-radius: 10px;
   padding: 10px;
   margin-top: 5px;
-  font-size: 25px;
+  font-size: 18px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
@@ -100,7 +101,7 @@
   border-radius: 10px;
   padding: 10px;
   margin-top: 5px;
-  font-size: 25px;
+  font-size: 18px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
