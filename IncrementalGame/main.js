@@ -13,7 +13,7 @@ var game = {
 			this.totalMangoes += amount;
 			display.updateScore();
 			// if (game.mangoes >= 100){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
-			if (game.mangoes >= 10){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
+			if (game.totalMangoes >= 7000){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
 				document.getElementById("tradeButton").style.display = 'inline-block';
 				document.getElementById("trademsg").style.display = 'inline-block';
 		 }
