@@ -12,13 +12,12 @@ var game = {
 			this.mangoes += amount; //this = whatever variable in var game
 			this.totalMangoes += amount;
 			display.updateScore();
-			if (game.mangoes >= 100){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
+			// if (game.mangoes >= 100){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
 			if (game.mangoes >= 10){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
 				document.getElementById("tradeButton").style.display = 'inline-block';
 				document.getElementById("trademsg").style.display = 'inline-block';
 		 }
 		 display.updateScore();
-	}
 },
 
 	getScorePerSecond: function() {
@@ -30,15 +29,11 @@ var game = {
 	},
 
 	tradeForGold: function(){
-		//First check if you have enough mangoes to trade for Gold
-		if (game.mangoes >= game.goldCost){
-			game.mangoes -= game.goldCost;
-			game.gold += 1;
-			game.goldCost = Math.round(game.goldCost * 1.01);
+		// trade all mangoes for gold
+			game.gold += game.mangoes;
+			game.mangoes = 0;
 			document.getElementById("gold").style.display = 'inline-block';
 			document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
-			document.getElementById("goldCost").innerHTML = game.goldCost;
-		}
 		if (game.gold >= items2.cost[0]){ //Have mango stand button pop up when the user reaches 5 gold
 			document.getElementById("mangoStand").style.display = 'inline-block';
 		}
@@ -248,7 +243,7 @@ var items2 = {
 			game.gold -= this.cost[0];
 			this.count[0] += 1;
 			this.cost[0] = Math.round(this.cost[0] * 1);
-			document.getElementById("gold").innerHTML = "You have " + game.gold + " gold!";
+			document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
 			document.getElementById("standCost").innerHTML = this.cost[0];
 			document.getElementById("mangoStandCount").style.display = 'inline-block';
 			document.getElementById("mangoStandCount").innerHTML = "Now you have " + this.count[0] + " mango stands! Why not build a factory?";
@@ -310,13 +305,11 @@ var items2 = {
 			this.cost[4] = Math.round(this.cost[4] * 1.01);
 			document.getElementById("citiesCount").innerHTML = "Now you have " + this.count[3] + " mango cities! You can open your own mango country :D";
 			document.getElementById("countryCostyCost").innerHTML = this.cost[4];
+			document.getElementById("countryCount").style.display = 'inline-block';
+			document.getElementById("countryCount").innerHTML = "Now you have " + this.count[4] + " countries!";
 			if(this.count[4] >= 3){ //Display win message if number of countries you purchase is >= 3
 				document.getElementById("winmsg").style.display = 'inline-block';
 			}
-			/*
-			document.getElementById("countryCount").style.display = 'inline-block';
-			document.getElementById("countryCount").innerHTML = "You have " + this.count[4] + " countries";
-			*/
 		}
 	},
 

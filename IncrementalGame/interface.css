@@ -13,13 +13,49 @@
   width: 10%;
 }
 
+#gold {
+  font-family: "Sweet Mango";
+  width: 200px;
+}
+
+#mangoStandCount {
+  font-family: "Sweet Mango";
+  width: 200px;
+}
+
+#factoryCount {
+  font-family: "Sweet Mango";
+  width: 200px;
+}
+
+#corpCount {
+  font-family: "Sweet Mango";
+  width: 200px;
+}
+
+#citiesCount {
+  font-family: "Sweet Mango";
+  width: 200px;
+}
+
+#countryCount {
+  font-family: "Sweet Mango";
+  width: 200px;
+  float: left;
+}
+
+#winmsg {
+  font-family: "Sweet Mango";
+  width: 500px;
+}
+
 #tradeButton {
   background-color: rgb(255, 195, 36);
   transition: all .2s ease-in-out;
   border-radius: 10px;
   padding: 5px 15px 5px 15px;
-  margin-top: 5px;
   font-size: 18px;
+  width: 200px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
@@ -37,6 +73,7 @@
   padding: 10px;
   margin-top: 5px;
   font-size: 18px;
+  width: 200px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
@@ -53,6 +90,7 @@
   padding: 10px;
   font-size: 18px;
   margin-top: 5px;
+  width: 200px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
@@ -69,6 +107,7 @@
   padding: 10px;
   margin-top: 5px;
   font-size: 18px;
+  width: 200px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
@@ -85,6 +124,7 @@
   padding: 10px;
   margin-top: 5px;
   font-size: 18px;
+  width: 200px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
@@ -102,6 +142,7 @@
   padding: 10px;
   margin-top: 5px;
   font-size: 18px;
+  width: 200px;
   border-color: transparent;
   font-family: "Sweet Mango";
 }
@@ -114,8 +155,13 @@
 #winmsg {
   background-color: rgb(255, 195, 36);
   padding: 10px;
-  font-size: 14px;
+  font-size: 24px;
   font-family: "Sweet Mango";
+}
+
+#winmsg:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
 }
 
 .scorecontainer{
