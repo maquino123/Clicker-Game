@@ -12,7 +12,7 @@
     <p id = "trademsg" style = "display:none">
       You got a lot of mangoes there! What do you say you trade them for some gold?
     </p>
-    <button id="tradeButton" type="button" onclick="game.tradeForGold()" style="display:none">Trade all your Mangoes for Gold</button>
+    <button id="tradeButton" type="button" onclick="game.tradeForGold(); game.displayDblButton();" style="display:none">Trade all your Mangoes for Gold</button>
     <br><span id="gold" style="display:none">0</span>
 
     <br><button id="mangoStand" type="button" style="display:none" onclick="items2.purchaseStand()">Open a Mango Stand <br>Cost: <span id="standCost">1</span> Gold</button><br>
@@ -27,8 +27,9 @@
     <br><button id="mangoCity" type="button" style="display:none" onclick="items2.purchaseCity()">Open a Mango City <br>Cost: <span id="cityCostyCost">4</span> Mango Corporations</button><br>
     <span id="citiesCount" style="display:none">0</span>
 
-    <br><button id="mangoCountry" type="button" style="display:none" onclick="items2.purchaseCountry()">Open the Philippines <br>Cost: <span id="countryCostyCost">5</span> Mango Cities</button><br>
+    <br><button id="mangoCountry" type="button" style="display:none" onclick="items2.purchaseCountry()">Open a Mango Country <br>Cost: <span id="countryCostyCost">5</span> Mango Cities</button><br>
     <span id="countryCount" style="display:none">0</span>
+
 
     <audio src="music.mp3" autoplay loop="true" hidden="true"></audio>
 
@@ -44,14 +45,17 @@
       </div>
       <br>
       <div class="imagecontainer">
-        <img src="mango.png" height="350px" width="350px" onclick="game.gatherMangoes(game.clickValue)">
-        <br><button id="winmsg" type="button" style="display:none" onclick="items2.winGame()"> Congrats! You have as many countries for your mangoes <br>as there are countries in Australia (the continent). <br>Wonder what this button does?</button>
+        <img src="mango.png" height="350px" width="350px" onclick="game.gatherMangoes(game.clickValue);">
+        <br>
+        <button id="doubleButton" type="button" style="display:none" onclick="game.tradeAllGoldToDoubleMangoes();"> Would you like to trade ALL your gold to double the amount of mangoes you have? </button>
+        <br><button id="winmsg" type="button" style="display:none" onclick="items2.winGame()"> Congrats! You have as many countries for your mangoes <br>as there are countries in Australia (the continent). <br>Wonder what this button does? Click it!</button>
       </div>
     </center>
 
   </div>
 
   <div class="sectionRight" id="storeContainer">
+
   </div>
 
   <script src="main.js"></script>

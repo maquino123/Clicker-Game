@@ -12,13 +12,26 @@ var game = {
 			this.mangoes += amount; //this = whatever variable in var game
 			this.totalMangoes += amount;
 			display.updateScore();
-			// if (game.mangoes >= 100){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
-			if (game.totalMangoes >= 7000){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
+			if (game.totalMangoes >= 10){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
 				document.getElementById("tradeButton").style.display = 'inline-block';
 				document.getElementById("trademsg").style.display = 'inline-block';
 		 }
 		 display.updateScore();
 },
+
+	displayDblButton: function(){
+		if(game.gold>=3000){ //force user to pick between progress or play for "late" with very high mango output
+			document.getElementById("doubleButton").style.display = 'inline-block';
+		}
+	},
+
+	tradeAllGoldToDoubleMangoes: function(){
+		game.mangoes*=2;
+		game.gold = 0;
+		document.getElementById("gold").style.display = 'inline-block';
+		document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
+		display.updateScore();
+	},
 
 	getScorePerSecond: function() {
 		var scorePerSecond = 0;
@@ -46,14 +59,14 @@ var items = {
 			"Equipment",
 			"Farmer",
 			"Sprinkler",
-			"Work Animals"
+			"Work Animals",
 		],
 
 	image: [
 			"equipment.png",
 			"farmer.png",
 			"sprinkler.png",
-			"farmanimals.png"
+			"farmanimals.png",
 		],
 
 	count: [
@@ -167,11 +180,11 @@ var items2 = {
 		if (game.gold >= this.cost[0]){
 			game.gold -= this.cost[0];
 			this.count[0] += 1;
-			this.cost[0] = Math.round(this.cost[0] * 1.5);
+			this.cost[0] = Math.ceil(this.cost[0] * 1.2);
 			document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
 			document.getElementById("standCost").innerHTML = this.cost[0];
 			document.getElementById("mangoStandCount").style.display = 'inline-block';
-			document.getElementById("mangoStandCount").innerHTML = "Now you have " + this.count[0] + " mango stands! Why not build a factory?";
+			document.getElementById("mangoStandCount").innerHTML = "Now you have " + this.count[0] + " mango stands! Why not trade in those stands build a factory?";
 		}
 		if (this.count[0] >= this.cost[1]){
 			document.getElementById("mangoFactory").style.display = 'inline-block';
@@ -186,7 +199,7 @@ var items2 = {
 			document.getElementById("mangoStandCount").innerHTML = "Now you have " + this.count[0] + " mango stands! Why not build a factory?";
 			document.getElementById("factoryCost").innerHTML = this.cost[1];
 			document.getElementById("factoryCount").style.display = 'inline-block';
-			document.getElementById("factoryCount").innerHTML = "Now you have " + this.count[1] + " factories! A lot of people are moving in to work in the factories! You've got a lot of money and power. Wanna turn your business into a corporation?";
+			document.getElementById("factoryCount").innerHTML = "Now you have " + this.count[1] + " factories! A lot of people are moving in to work! Needless to say, you've got a lot of money and power. Wanna turn your business into a corporation?";
 		}
 		if (this.count[1] >= this.cost[2]){
 			document.getElementById("mangoCorporation").style.display = 'inline-block';
@@ -228,7 +241,7 @@ var items2 = {
 			this.count[3] -= this.cost[4];
 			this.count[4] += 1;
 			this.cost[4] = Math.round(this.cost[4] * 1.01);
-			document.getElementById("citiesCount").innerHTML = "Now you have " + this.count[3] + " mango cities! You can open your own mango country :D";
+			document.getElementById("citiesCount").innerHTML = "Now you have " + this.count[3] + " mango cities! You can open your own country for your mangoes :D";
 			document.getElementById("countryCostyCost").innerHTML = this.cost[4];
 			document.getElementById("countryCount").style.display = 'inline-block';
 			document.getElementById("countryCount").innerHTML = "Now you have " + this.count[4] + " countries!";
@@ -242,9 +255,6 @@ var items2 = {
 				location.href='endscreen.html';
 			}
 };
-
-
-
 
 var display = {
 	updateScore: function() {

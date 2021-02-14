@@ -156,6 +156,7 @@
   background-color: rgb(255, 195, 36);
   padding: 10px;
   font-size: 24px;
+  margin-top: 50px;
   font-family: "Sweet Mango";
 }
 
@@ -250,4 +251,37 @@ p {
     font-family: "Sweet Mango";
     src: url('Sweet Mango.ttf'), url('Sweet Mango.otf');
 }
+
+#win{
+  font-size: 30px;
+  font-family: "Sweet Mango";
+  font-kerning: normal;
+}
+
+.endMiddle img{
+  height: 300px;
+  width: 300px;
+  margin: 20px;
+}
+
+#partingMsg{
+  font-size: 30px;
+  font-family:"Sweet Mango";
+  font-kerning: normal;
+}
+
+#doubleButton{
+    background-color: rgb(255, 195, 36);
+    padding: 10px;
+    font-size: 24px;
+    font-family: "Sweet Mango";
+    margin-top: 20px;
+    position:relative;
+    width: 300px;
+}
+#doubleButton:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
 }
