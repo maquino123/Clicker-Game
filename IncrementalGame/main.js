@@ -12,7 +12,7 @@ var game = {
 			this.mangoes += amount; //this = whatever variable in var game
 			this.totalMangoes += amount;
 			display.updateScore();
-			if (game.totalMangoes >= 10){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
+			if (game.totalMangoes >= 5000){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
 				document.getElementById("tradeButton").style.display = 'inline-block';
 				document.getElementById("trademsg").style.display = 'inline-block';
 		 }
@@ -20,7 +20,7 @@ var game = {
 },
 
 	displayDblButton: function(){
-		if(game.gold>=3000){ //force user to pick between progress or play for "late" with very high mango output
+		if(game.gold>=5000){ //force user to pick between progress or play for "late" with very high mango output
 			document.getElementById("doubleButton").style.display = 'inline-block';
 		}
 	},
@@ -32,6 +32,14 @@ var game = {
 		document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
 		display.updateScore();
 	},
+
+cursorUpgrade: function(){
+	if(game.mangoes>=3000){
+		game.mangoes -= 3000;
+		game.clickValue += 2;
+		display.updateScore();
+	}
+},
 
 	getScorePerSecond: function() {
 		var scorePerSecond = 0;
@@ -260,6 +268,7 @@ var display = {
 	updateScore: function() {
 		document.getElementById("mangoes").innerHTML = game.mangoes;
 		document.getElementById("scorepersecond").innerHTML = game.getScorePerSecond();
+		document.getElementById("cursorLevel").innerHTML = game.clickValue;
 	},
 
 	updateStore: function() {
