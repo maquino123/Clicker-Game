@@ -34,8 +34,8 @@ var game = {
 	},
 
 cursorUpgrade: function(){
-	if(game.mangoes>=3000){
-		game.mangoes -= 3000;
+	if(game.mangoes>=1900){
+		game.mangoes -= 1900;
 		game.clickValue += 2;
 		display.updateScore();
 	}
@@ -188,7 +188,7 @@ var items2 = {
 		if (game.gold >= this.cost[0]){
 			game.gold -= this.cost[0];
 			this.count[0] += 1;
-			this.cost[0] = Math.ceil(this.cost[0] * 1.2);
+			this.cost[0] = Math.ceil(this.cost[0] * 1.07);
 			document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
 			document.getElementById("standCost").innerHTML = this.cost[0];
 			document.getElementById("mangoStandCount").style.display = 'inline-block';
