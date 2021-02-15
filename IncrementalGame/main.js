@@ -26,7 +26,7 @@ var game = {
 	},
 
 	tradeAllGoldToDoubleMangoes: function(){
-		if(game.mangoes != 0){
+		if(game.gold != 0){
 			game.mangoes*=2;
 			game.gold = 0;
 			document.getElementById("gold").style.display = 'inline-block';
@@ -190,7 +190,7 @@ var items2 = {
 		if (game.gold >= this.cost[0]){
 			game.gold -= this.cost[0];
 			this.count[0] += 1;
-			this.cost[0] = Math.ceil(this.cost[0] * 1.035);
+			this.cost[0] = Math.ceil(this.cost[0] * 1.04);
 			document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
 			document.getElementById("standCost").innerHTML = this.cost[0];
 			document.getElementById("mangoStandCount").style.display = 'inline-block';
