@@ -1,6 +1,6 @@
-.sectionLeft {
+.sectionMid {
   float: left;
-  width: 80%;
+  width: 70%;
 }
 
 .sectionRight {
@@ -8,13 +8,170 @@
   width: 20%;
 }
 
+.sectionLeft{
+  float: left;
+  width: 10%;
+}
+
+#gold {
+  font-family: "Sweet Mango";
+  width: 200px;
+}
+
+#mangoStandCount {
+  font-family: "Sweet Mango";
+  width: 200px;
+}
+
+#factoryCount {
+  font-family: "Sweet Mango";
+  width: 200px;
+}
+
+#corpCount {
+  font-family: "Sweet Mango";
+  width: 200px;
+}
+
+#citiesCount {
+  font-family: "Sweet Mango";
+  width: 200px;
+}
+
+#countryCount {
+  font-family: "Sweet Mango";
+  width: 200px;
+  float: left;
+}
+
+#winmsg {
+  font-family: "Sweet Mango";
+  width: 500px;
+}
+
+#tradeButton {
+  background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
+  padding: 5px 15px 5px 15px;
+  font-size: 18px;
+  width: 200px;
+  border-color: transparent;
+  font-family: "Sweet Mango";
+}
+
+#tradeButton:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
+
+#mangoStand {
+  background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 18px;
+  width: 200px;
+  border-color: transparent;
+  font-family: "Sweet Mango";
+}
+
+#mangoStand:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
+#mangoFactory {
+  background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  margin-top: 5px;
+  width: 200px;
+  border-color: transparent;
+  font-family: "Sweet Mango";
+}
+
+#mangoFactory:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
+#mangoCorporation {
+  background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 18px;
+  width: 200px;
+  border-color: transparent;
+  font-family: "Sweet Mango";
+}
+
+#mangoCorporation:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
+#mangoCity {
+  background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 18px;
+  width: 200px;
+  border-color: transparent;
+  font-family: "Sweet Mango";
+}
+
+#mangoCity:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
+
+#mangoCountry {
+  background-color: rgb(255, 195, 36);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 18px;
+  width: 200px;
+  border-color: transparent;
+  font-family: "Sweet Mango";
+}
+
+#mangoCountry:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
+#winmsg {
+  background-color: rgb(255, 195, 36);
+  padding: 10px;
+  font-size: 24px;
+  margin-top: 20px;
+  font-family: "Sweet Mango";
+}
+
+#winmsg:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
 .scorecontainer{
   background-color: rgb(255, 195, 36);
-  width: 50%;
+  width: 40%;
   padding: 10px;
   border-radius: 10px;
   font-size: 24px;
-  font-weight: bold;
+  font-family: "Sweet Mango";
 }
 
 .imagecontainer img{
@@ -36,6 +193,7 @@
   border-radius: 10px;
   width: 100%;
   margin: 5px 0px 5px 0px;
+  font-family: "Sweet Mango";
 }
 
 .store:hover {
@@ -64,6 +222,81 @@
 
 .store #amount {
   font-size: 25px;
-  font-family: roboto;
+  font-family: "Sweet Mango";
   width: 15%;
+}
+
+body{
+  background-image: url('bkg.jpg');
+  background-repeat: no-repeat;
+  background-size: 1920px 1080px;
+  user-select: none;
+}
+
+.button{
+  padding-top: 50px;
+}
+
+#title{
+  font-size: 30px;
+  font-family: "Sweet Mango";
+  font-kerning: normal;
+}
+
+p {
+  font-family: "Sweet Mango";
+}
+
+@font-face {
+    font-family: "Sweet Mango";
+    src: url('Sweet Mango.ttf'), url('Sweet Mango.otf');
+}
+
+#win{
+  font-size: 30px;
+  font-family: "Sweet Mango";
+  font-kerning: normal;
+}
+
+.endMiddle img{
+  height: 300px;
+  width: 300px;
+  margin: 20px;
+}
+
+#partingMsg{
+  font-size: 30px;
+  font-family:"Sweet Mango";
+  font-kerning: normal;
+}
+
+#doubleButton{
+    background-color: rgb(255, 195, 36);
+    padding: 10px;
+    font-size: 24px;
+    font-family: "Sweet Mango";
+    margin-top: 20px;
+    position:relative;
+    width: 300px;
+}
+#doubleButton:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
+#cursorUpgradeBtn{
+  background-color: rgb(255, 195, 36);
+  padding: 10px;
+  font-size: 24px;
+  font-family: "Sweet Mango";
+  margin-top: 20px;
+  position:relative;
+  width: 300px;
+}
+
+#cursorUpgradeBtn:hover {
+  background-color: #ffea47;
+  transition: all .2s ease-in-out;
+}
+
 }

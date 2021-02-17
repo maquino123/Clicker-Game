@@ -1,114 +1,293 @@
-var timer = 256
-var tickRate = 16
-var visualRate = 256
-var resources = {"gold":0,"pickaxe":1}
-var costs = {"pickaxe":15,
-	     "miner":200,
-	     "miner_pickaxe":15}
-var growthRate = {"pickaxe":1,
-		  "miner":1,
-	     "miner_pickaxe":2}
+var game = {
+	mangoes: 0,
+	totalMangoes: 0,
+	gold: 0,
+	goldCost: 1,
+	totalGold: 0,
+	totalClicks: 0,
+	clickValue: 1,
+	version: 0.000,
 
-var increments = [{"input":["miner","miner_pickaxe"],
-		   "output":"gold"}]
+	gatherMangoes: function(amount) {
+			this.mangoes += amount; //this = whatever variable in var game
+			this.totalMangoes += amount;
+			display.updateScore();
+			if (game.totalMangoes >= 5000){ //Display trade button once user reaches a certain amount of mangoes. 50 for testing purposes
+				document.getElementById("tradeButton").style.display = 'inline-block';
+				document.getElementById("trademsg").style.display = 'inline-block';
+		 }
+		 display.updateScore();
+},
 
-var unlocks = {"pickaxe":{"gold":10},
-	       "miner":{"gold":100},
-	       "miner_pickaxe":{"miner":1}}
+	displayDblButton: function(){
+		if(game.gold>=5000){ //force user to pick between progress or play for "late" with very high mango output
+			document.getElementById("doubleButton").style.display = 'inline-block';
+		}
+	},
 
-function mineGold(num){
-    resources["gold"] += num*resources["pickaxe"]
-    updateText()
+	tradeAllGoldToDoubleMangoes: function(){
+		if(game.gold != 0){
+			game.mangoes*=2;
+			game.gold = 0;
+			document.getElementById("gold").style.display = 'inline-block';
+			document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
+			display.updateScore();
+		}
+	},
+
+cursorUpgrade: function(){
+	if(game.mangoes>=1900){
+		game.mangoes -= 1900;
+		game.clickValue += 2;
+		display.updateScore();
+	}
+},
+
+	getScorePerSecond: function() {
+		var scorePerSecond = 0;
+		for (i = 0; i < items.name.length; i++) { //Go through every index in items.name
+				scorePerSecond += items.income[i] * items.count[i];
+		}
+		return scorePerSecond;
+	},
+
+	tradeForGold: function(){
+		// trade all mangoes for gold
+			game.gold += game.mangoes;
+			game.mangoes = 0;
+			document.getElementById("gold").style.display = 'inline-block';
+			document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
+		if (game.gold >= items2.cost[0]){ //Have mango stand button pop up when the user reaches 5 gold
+			document.getElementById("mangoStand").style.display = 'inline-block';
+		}
+	},
 };
 
-function upgradeMinerPickaxe(num){
-    if (resources["gold"] >= costs["miner_pickaxe"]*num){ //Check if you have enough mangoes to buy farming equipment upgrade
-	resources["miner_pickaxe"] += num //Increment farming equipment level
-	resources["gold"] -= num*costs["miner_pickaxe"] //Subtract cost of upgrade from total mangoes
+//Literally just have to add to this list to add more resources
+var items = {
+	name: [
+			"Equipment",
+			"Farmer",
+			"Sprinkler",
+			"Work Animals",
+		],
 
-	costs["miner_pickaxe"] *= growthRate["miner_pickaxe"] //
+	image: [
+			"equipment.png",
+			"farmer.png",
+			"sprinkler.png",
+			"farmanimals.png",
+		],
 
-	updateText()
-    }
+	count: [
+			0,
+			0,
+			0,
+			0
+		],
+
+	income: [
+			1,
+			3,
+		 8,
+		 20
+		],
+
+	cost: [
+			20,
+			50,
+			100,
+			200
+		],
+
+		purchase: function(index) {
+			if (game.mangoes >= this.cost[index]) { //Check if wh
+				game.mangoes -= this.cost[index];
+				this.count[index] += 1
+				this.cost[index] = Math.round(this.cost[index] * 1.15);
+				display.updateScore();
+				display.updateStore();
+			}
+		}
 };
 
-function upgradePickaxe(num){
-    if (resources["mangoes"] >= costs["pickaxe"]*num){
-	resources["pickaxe"] += num
-	resources["gold"] -= num*costs["pickaxe"]
+var items2 = {
+	name:[
+		"Stand",
+		"Factory",
+		"Corporation",
+		"City",
+		"Country"
+	],
 
-	costs["pickaxe"] *= growthRate["pickaxe"]
+	image: [
 
-	updateText()
-    }
-};
-function hireMiner(num){
-    if (resources["gold"] >= costs["miner"]*num){
-	if (!resources["miner"]){
-	    resources["miner"] = 0
-	}
-	if (!resources["miner_pickaxe"]){
-	    resources["miner_pickaxe"] = 1
-	}
-	resources["miner"] += num
-	resources["gold"] -= num*costs["miner"]
+	],
 
-	costs["miner"] *= growthRate["miner"]
+	count: [
+		0,
+		0,
+		0,
+		0,
+		0
+	],
 
-	updateText()
-
-
-    }
-};
+	cost:[
+		1,
+		2,
+		3,
+		4,
+		5 //one country = 5 cities, one city = 4 corporations, one corporation = 3 factories, one factory = 2 stands, one stand = 1 gold
+	]
+}
 
 
+var display = {
+	updateScore: function() {
+		document.getElementById("mangoes").innerHTML = game.mangoes;
+		document.getElementById("scorepersecond").innerHTML = game.getScorePerSecond();
+	},
 
-function updateText(){
-    for (var key in unlocks){
-	var unlocked = true
-	for (var criterion in unlocks[key]){
-	    unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
-	}
-	if (unlocked){
-	    for (var element of document.getElementsByClassName("show_"+key)){
-		element.style.display = "block"
-	    }
-	}
-    }
+	updateStore: function() {
+		document.getElementById("storeContainer").innerHTML = "";
+		for (i = 0; i < items.name.length; i++){
+			document.getElementById("storeContainer").innerHTML += '<table class="store" onClick="items.purchase('+i+')"><tr>						<td id="image"><img src='+items.image[i]+'></td> 			<td id="nameandcost"><p>'+items.name[i]+'</p><p> Cost: <span>'+items.cost[i]+'</span> Mangoes</p></td>	<td id="prodimprovement"><span>'+items.income[i]+'</span>/sec</td>		<td id="amount"><span>'+items.count[i]+'</span></td>					</tr></table>';
+		}
+	},
+}
 
-    for (var key in resources){
-	 for (var element of document.getElementsByClassName(key)){
-	    element.innerHTML = resources[key].toFixed(2)
-	}
-    }
-    for (var key in costs){
-	for (var element of document.getElementsByClassName(key+"_cost")){
-	    element.innerHTML = costs[key].toFixed(2)
-	}
-    }
+window.onload = function() {
+	display.updateScore();
+	display.updateStore();
 };
 
+var items2 = {
+	name:[
+		"Stand",
+		"Factory",
+		"Corporation",
+		"City",
+		"Country"
+	],
 
-window.setInterval(function(){
-    timer += tickRate
+	count: [
+		0,
+		0,
+		0,
+		0,
+		0
+	],
 
+	cost:[
+		1,
+		2,
+		3,
+		4,
+		5 //one country = 5 cities, one city = 4 corporations, one corporation = 3 factories, one factory = 2 stands, one stand = 1 gold
+	],
 
-    for (var increment of increments){
-	total = 1
-	for (var input of increment["input"]){
-	    total *= resources[input]
+	purchaseStand: function(){
+		if (game.gold >= this.cost[0]){
+			game.gold -= this.cost[0];
+			this.count[0] += 1;
+			this.cost[0] = Math.ceil(this.cost[0] * 1.012);
+			document.getElementById("gold").innerHTML = "Now you have " + game.gold + " gold!";
+			document.getElementById("standCost").innerHTML = this.cost[0];
+			document.getElementById("mangoStandCount").style.display = 'inline-block';
+			document.getElementById("mangoStandCount").innerHTML = "Now you have " + this.count[0] + " mango stands! Why not trade in those stands build a factory?";
+		}
+		if (this.count[0] >= this.cost[1]){
+			document.getElementById("mangoFactory").style.display = 'inline-block';
+		}
+	},
 
-	}
-	if (total){
-	    console.log(total)
-	    resources[increment["output"]] += total/tickRate
-	}
-    }
+	purchaseFactory: function(){
+		if (this.count[0] >= this.cost[1]){ //If the user has enough mango stands to purchase a factory (2 mango stands for 1 factory)
+			this.count[0] -= this.cost[1];
+			this.count[1] += 1;
+			this.cost[1] = Math.round(this.cost[1] * 1);
+			document.getElementById("mangoStandCount").innerHTML = "Now you have " + this.count[0] + " mango stands! Why not build a factory?";
+			document.getElementById("factoryCost").innerHTML = this.cost[1];
+			document.getElementById("factoryCount").style.display = 'inline-block';
+			document.getElementById("factoryCount").innerHTML = "Now you have " + this.count[1] + " factories! A lot of people are moving in to work! Needless to say, you've got a lot of money and power. Wanna turn your business into a corporation?";
+		}
+		if (this.count[1] >= this.cost[2]){
+			document.getElementById("mangoCorporation").style.display = 'inline-block';
+		}
+	},
 
-    if (timer > visualRate){
-	timer -= visualRate
-	updateText()
-    }
+	purchaseCorporation: function(){
+		if (this.count[1] >= this.cost[2]){ //If the user has enough factories: can buy corp (needs 3 factories to buy 1 corp, at the start)
+			this.count[1] -= this.cost[2];
+			this.count[2] += 1;
+			this.cost[2] = Math.round(this.cost[2] * 1);
+			document.getElementById("factoryCount").innerHTML = "Now you have " + this.count[1] + " factories! A lot of people are moving in to work in the factories! You've got a lot of money and power. Wanna turn your business into a corporation?";
+			document.getElementById("corpCostyCost").innerHTML = this.cost[2];
+			document.getElementById("corpCount").style.display = 'inline-block';
+			document.getElementById("corpCount").innerHTML = "Now you have " + this.count[2] +" mango corporations! Pay off some governments like a proper corporation and buy a city!";
+		}
+		if (this.count[2] >= this.cost[3]){
+			document.getElementById("mangoCity").style.display = 'inline-block';
+		}
+	},
 
+	purchaseCity: function(){
+		if (this.count[2] >= this.cost[3]){ //If the user has enough corporations:
+			this.count[2] -= this.cost[3];
+			this.count[3] += 1;
+			this.cost[3] = Math.round(this.cost[3] * 1);
+			document.getElementById("corpCount").innerHTML = "Now you have " + this.count[2] +" mango corporations! Pay off some governments like a proper corporation and buy a city!";
+			document.getElementById("cityCostyCost").innerHTML = this.cost[3];
+			document.getElementById("citiesCount").style.display = 'inline-block';
+			document.getElementById("citiesCount").innerHTML = "Now you have " + this.count[3] + " mango cities! You can open your own mango country :D";
+		}
+		if (this.count[3] >= this.cost[4]){
+			document.getElementById("mangoCountry").style.display = 'inline-block';
+		}
+	},
 
-}, tickRate);
+	purchaseCountry: function(){
+		if (this.count[3] >= this.cost[4]){ //If the user has enough Cities: country
+			this.count[3] -= this.cost[4];
+			this.count[4] += 1;
+			this.cost[4] = Math.round(this.cost[4] * 1);
+			document.getElementById("citiesCount").innerHTML = "Now you have " + this.count[3] + " mango cities! You can open your own country for your mangoes :D";
+			document.getElementById("countryCostyCost").innerHTML = this.cost[4];
+			document.getElementById("countryCount").style.display = 'inline-block';
+			document.getElementById("countryCount").innerHTML = "Now you have " + this.count[4] + " countries!";
+			if(this.count[4] >= 3){ //Display win message if number of countries you purchase is >= 3
+				document.getElementById("winmsg").style.display = 'inline-block';
+			}
+		}
+	},
+
+	winGame: function(){
+				location.href='endscreen.html';
+			}
+};
+
+var display = {
+	updateScore: function() {
+		document.getElementById("mangoes").innerHTML = game.mangoes;
+		document.getElementById("scorepersecond").innerHTML = game.getScorePerSecond();
+		document.getElementById("cursorLevel").innerHTML = game.clickValue;
+	},
+
+	updateStore: function() {
+		document.getElementById("storeContainer").innerHTML = "";
+		for (i = 0; i < items.name.length; i++){
+			document.getElementById("storeContainer").innerHTML += '<table class="store" onClick="items.purchase('+i+')"><tr>						<td id="image"><img src='+items.image[i]+'></td> 			<td id="nameandcost"><p>'+items.name[i]+'</p><p> Cost: <span>'+items.cost[i]+'</span> Mangoes</p></td>	<td id="prodimprovement"><span>'+items.income[i]+'</span>/sec</td>		<td id="amount"><span>'+items.count[i]+'</span></td>					</tr></table>';
+		}
+	},
+}
+
+window.onload = function() {
+	display.updateScore();
+	display.updateStore();
+};
+
+setInterval(function() {
+	game.mangoes += game.getScorePerSecond();
+	game.totalMangoes += game.getScorePerSecond();
+	display.updateScore();
+}, 1000);

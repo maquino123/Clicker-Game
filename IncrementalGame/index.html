@@ -8,123 +8,59 @@
 
 <body>
 
-  <div class="sectionLeft">
+  <div class="sectionLeft" id="buildingContainer">
+    <p id = "trademsg" style = "display:none">
+      You got a lot of mangoes there! What do you say you trade them for some gold?
+    </p>
+    <button id="tradeButton" type="button" onclick="game.tradeForGold(); game.displayDblButton(); game.displayCursorUpgradeButton();" style="display:none">Trade all your Mangoes for Gold</button>
+    <br><span id="gold" style="display:none">0</span>
+
+    <br><button id="mangoStand" type="button" style="display:none" onclick="items2.purchaseStand()">Open a Mango Stand <br>Cost: <span id="standCost">1</span> Gold</button><br>
+    <span id="mangoStandCount" style="display:none">0</span>
+
+    <br><button id="mangoFactory" type="button" style="display:none" onclick="items2.purchaseFactory()">Open a Mango Factory <br>Cost: <span id="factoryCost">2</span> Mango Stands</button><br>
+    <span id="factoryCount" style="display:none">0</span>
+
+    <br><button id="mangoCorporation" type="button" style="display:none" onclick="items2.purchaseCorporation()">Open a Mango Corporation <br>Cost: <span id="corpCostyCost">3</span> Mango Factories</button><br>
+    <span id="corpCount" style="display:none">0</span>
+
+    <br><button id="mangoCity" type="button" style="display:none" onclick="items2.purchaseCity()">Open a Mango City <br>Cost: <span id="cityCostyCost">4</span> Mango Corporations</button><br>
+    <span id="citiesCount" style="display:none">0</span>
+
+    <br><button id="mangoCountry" type="button" style="display:none" onclick="items2.purchaseCountry()">Open a Mango Country <br>Cost: <span id="countryCostyCost">5</span> Mango Cities</button><br>
+    <span id="countryCount" style="display:none">0</span>
+
+
+    <audio src="music.mp3" autoplay loop="true" hidden="true"></audio>
+
+  </div>
+
+  <div class="sectionMid">
     <center>
-      <p>Welcome to Mango Clicker!</p>
+      <p id = "title" >Welcome to Mango Clicker!</p>
 
       <div class="scorecontainer">
         <span id="mangoes">0 </span> Mangoes<br>
-        <span id="scorepersecond">0</span> Mangoes per second</span>
+        <span id="scorepersecond">0</span> Mangoes per second</span><br>
+        <span id="cursorLevel">0</span> Mangoes per click</span>
       </div>
       <br>
       <div class="imagecontainer">
-        <img src="mango.png" height="256px" width="256px" onclick="gatherMangoes(clickingPower)">
+        <img src="mango.png" height="350px" width="350px" onclick="game.gatherMangoes(game.clickValue);">
+        <br> <button id="cursorUpgradeBtn" type="button" onclick="game.cursorUpgrade();"> Increase the amount of mangoes you get per click! Cost: 1900 Mangoes</button>
+        <br>
+        <button id="doubleButton" type="button"  style="display:none" onclick="game.tradeAllGoldToDoubleMangoes();"> Trade ALL your gold to double the amount of mangoes you have now! </button>
+        <br><button id="winmsg" type="button"  style="display:none" onclick="items2.winGame()"> Congrats! You have as many countries for your mangoes <br>as there are countries in Australia (the continent). <br>Wonder what this button does? Click it!</button>
       </div>
     </center>
+
   </div>
 
-  <div class="sectionRight">
-    <table class="store" onClick="buyEquipment()">
-      <tr>
-        <td id="image"><img src="equipment.png" </td> <td id="nameandcost">
-          <p>Farming Equipment</p>
-          <p><span id="equipcost">15</span> Mangoes</p>
-        </td>
-        <td id="amount"><span id="equipment">0</span></td>
-      </tr>
-    </table>
+  <div class="sectionRight" id="storeContainer">
 
-    <table class="store" onClick="buyFarmers()">
-      <tr>
-        <td id="image"><img src="farmer.png" </td> <td id="nameandcost">
-          <p>Hire Farmers</p>
-          <p><span id="farmercost">50</span> Mangoes</p>
-        </td>
-        <td id="amount"><span id="farmers">0</span></td>
-      </tr>
-    </table>
-
-    <table class="store" onClick="buySprinkler()">
-      <tr>
-        <td id="image"><img src="sprinkler.png" </td> <td id="nameandcost">
-          <p>Build Sprinklers</p>
-          <p><span id="sprinklercost">100</span> Mangoes</p>
-        </td>
-        <td id="amount"><span id="sprinklers">0</span></td>
-      </tr>
-    </table>
   </div>
 
-  <script>
-    var mangoes = 0; //Keep track of mangoes
-    var clickingPower = 1;
-
-    var equipCost = 15; //Cost of farming equipment
-    var equipment = 0; //Number of farming equipment
-
-    var farmerCost = 50; //Cost of hiring farmers
-    var farmers = 0; //Number of farmers
-
-    var sprinklerCost = 100;
-    var sprinklers = 0;
-
-    function buyEquipment() {
-      if (mangoes >= equipCost) { //If the number of mangoes is greater than the cost of the equipment
-        mangoes = mangoes - equipCost; //Subtract from the mangoes cause you bought equipment
-        equipment = equipment + 1; //Add to the equipment the player has
-        equipCost = Math.round(equipCost * 1.15) //Increase the cost of equipment each time you buy it
-        document.getElementById("equipcost").innerHTML = equipCost; //Get the mangoes element id and update so it shows
-        document.getElementById("equipment").innerHTML = equipment; //Get the mangoes element id and update so it shows
-        document.getElementById("mangoes").innerHTML = mangoes; //Get the mangoes element id and update so it shows
-        updateScorePerSecond();
-      }
-    }
-
-    function buyFarmers() {
-      if (mangoes >= farmerCost) { //If the number of mangoes is greater than the cost of the equipment
-        mangoes = mangoes - farmerCost; //Subtract from the mangoes cause you bought equipment
-        farmers = farmers + 1; //Add to the equipment the player has
-        farmerCost = Math.round(farmerCost * 1.15) //Increase the cost of equipment each time you buy it
-        document.getElementById("farmercost").innerHTML = farmerCost; //Get the mangoes element id and update so it shows
-        document.getElementById("farmers").innerHTML = farmers; //Get the mangoes element id and update so it shows
-        document.getElementById("mangoes").innerHTML = mangoes; //Get the mangoes element id and update so it shows
-        updateScorePerSecond();
-      }
-    }
-
-    function buySprinkler() {
-      if (mangoes >= sprinklerCost) { //If the number of mangoes is greater than the cost of the equipment
-        mangoes = mangoes - sprinklerCost; //Subtract from the mangoes cause you bought equipment
-        sprinklers = sprinklers + 1; //Add to the equipment the player has
-        sprinklerCost = Math.round(sprinklerCost * 1.15) //Increase the cost of equipment each time you buy it
-        document.getElementById("sprinklercost").innerHTML = sprinklerCost; //Get the mangoes element id and update so it shows
-        document.getElementById("sprinklers").innerHTML = sprinklers; //Get the mangoes element id and update so it shows
-        document.getElementById("mangoes").innerHTML = mangoes; //Get the mangoes element id and update so it shows
-        updateScorePerSecond();
-      }
-    }
-
-    //Gather Mangoes when you click on the mango image
-    function gatherMangoes(num) {
-      mangoes = mangoes + num; //Add to score
-      document.getElementById("mangoes").innerHTML = mangoes; //Get the mangoes element id and update so it shows
-    }
-
-    //Take scores and update scorepersecond id
-    function updateScorePerSecond() {
-      scorepersecond = equipment + farmers * 5 + sprinklers * 10;
-      document.getElementById("scorepersecond").innerHTML = scorepersecond; //Get the mangoes element id and update so it shows
-    }
-
-    //Do something every second
-    setInterval(function() {
-      mangoes = mangoes + equipment //Idle element: Get mangoes based on how much equipment you have. Ex. 2 equipment = 2 mangoes per second
-      mangoes = mangoes + farmers * 5 //Farmers get 5 mangoes per second
-      mangoes = mangoes + sprinklers * 10 //Sprinklers get 10 mangoes per second
-      document.getElementById("mangoes").innerHTML = mangoes; //Get the mangoes element id and update so it shows
-    }, 1000) //1000ms = 1 second
-
-  </script>
+  <script src="main.js"></script>
 </body>
 
 </html>
